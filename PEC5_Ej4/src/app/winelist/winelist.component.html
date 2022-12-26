@@ -1,0 +1,5 @@
+<div class="wines-container" *ngFor="let wine of wines;">
+    <app-wineitem [wine]="wine"
+        (changeQuantityObjectPlus)="onPlusItem($event)"
+        (changeQuantityObjectMinus)="onMinusItem($event)"></app-wineitem>
+</div> 
