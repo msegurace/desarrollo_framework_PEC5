@@ -1,0 +1,60 @@
+<h2>Create Wine</h2>
+
+<div class="form-group">
+  <form (ngSubmit)="createWine(wineForm)" #wineForm="ngForm" >
+    <div ngModelGroup="wine">
+      <div class="wine-name">
+        <input type="text"
+              placeholder="Wine Name"
+              required
+              name="wineName"
+              #wineName="ngModel"
+              ngModel>
+      </div>
+      <div class="error" *ngIf="(wineName.dirty || wineName.touched) && wineName.errors && wineName.getError('required')">
+        Wine name is required
+      </div>
+      <div class="wine-price">
+        <input type="number"
+              placeholder="Wine Price"
+              required
+              #winePrice="ngModel"
+              name="price"
+              pattern="^[0-9]*$"
+              ngModel>
+      </div>
+      <div class="error" *ngIf="(winePrice.dirty || winePrice.touched) && winePrice.errors && winePrice.invalid">
+        <div *ngIf="winePrice.getError('pattern')">
+            Wine Price only admits numbers
+          </div>
+        <div *ngIf="winePrice.getError('required')">
+            Wine Price is required
+        </div>
+      </div>
+      <div class="wine-imageurl">
+        <input type="text"
+              placeholder="Wine Image URL"
+              name="imageUrl"
+              #wineImageUrl="ngModel"
+              pattern="(^http(s?)://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(/\S*)?$)"
+              required
+              ngModel>
+      </div>
+      <div class="error" *ngIf="(wineImageUrl.dirty || wineImageUrl.touched) && wineImageUrl.errors && wineImageUrl.invalid">
+        <div *ngIf="wineImageUrl.getError('required')">
+          Wine Image URL is required
+        </div>
+        <div *ngIf="wineImageUrl.getError('pattern')">
+          Wine Image URL does not seem to be a valid URL
+        </div>
+      </div>
+      <div class="wine-isonsale">
+        <input type="checkbox"
+              name="isOnSale"
+              ngModel>
+        <label for="isOnSale">On Sale</label>
+      </div>
+      </div>
+      <button type="submit">Create</button>
+  </form>
+</div>
