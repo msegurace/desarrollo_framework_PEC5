@@ -15,7 +15,7 @@
         Wine name is required
       </div>
       <div class="wine-price">
-        <input type="number"
+        <input type="text"
               placeholder="Wine Price"
               required
               #winePrice="ngModel"
@@ -24,12 +24,12 @@
               ngModel>
       </div>
       <div class="error" *ngIf="(winePrice.dirty || winePrice.touched) && winePrice.errors && winePrice.invalid">
-        <div *ngIf="winePrice.getError('pattern')">
-            Wine Price only admits numbers
-          </div>
         <div *ngIf="winePrice.getError('required')">
             Wine Price is required
         </div>
+        <div *ngIf="winePrice.getError('pattern')">
+            Wine Price only admits numbers
+          </div>
       </div>
       <div class="wine-imageurl">
         <input type="text"

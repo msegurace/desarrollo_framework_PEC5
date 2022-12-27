@@ -41,7 +41,7 @@ A nivel de TypeScript se declararía una variable del tipo FormGroup y dentro de
 ### b) Busca en la página oficial de Angular (o utiliza un recurso de O’Reilly) en el que se especifiquen todos los validadores que incluye Angular para ser utilizados en los formularios reactivos. Construye una tabla de resumen de estos.
 
 | Validador | Descripción |
-| :--- | ---: |
+| :--- | :--- |
 | min | Especifica el valor mínimo del control |
 | max | Especifica el valor máximo del control |
 | required | Especifica que el control tiene que tener algún valor |
@@ -55,3 +55,23 @@ A nivel de TypeScript se declararía una variable del tipo FormGroup y dentro de
 | compose | Junta múltiples validadores asincrónicos en una función única que devolverá la unión de todos los errores que tenga el control |
 
 ### c) ¿Qué son, cuáles son y para qué sirven los estados en los formularios reactivos?
+Los esstados en los formularios reactivos son bastante similares a los que vimos en los formularios dirigidos por templates, lo que cambia es la forma en que se accede a estas propiedades.
+
+Los estados son:
+1. ng-touched y ng-untouched: nos indica si el control ha sido "tocado" o no, es decir, ha recibido el foco. Se aplicará ng-touched si la condición es verdadera y ng-untouched si no.
+2. ng-dirty y ng-pristine: nos indica si el valor del control ha sido cambiado. Se aplica ng-dirty si ha sido cambiado y ng-pristine si no.
+3. ng-valid y ng-invalid: nos indica si el valor del control es válido o no, es decir, si cumple la condición de validación. se aplicará la clase ng-valid si lo es y ng-invalid si no lo es.
+
+Para acceder a los estados de los elementos:
+1. primero hay que obtener el elemento con `form.get(<<nombre del control>>)`
+2. Una vez obtenido el control podemos comprobar varias propiedades, si ha sido tocado (touched), modificado (dirty) y si es válido o no.
+3. Se pueden mostrar mensajes por cada estado.
+
+Un ejemplo obtenido del ejercicio 4 sería:
+
+    <div *ngIf="wineForm.get('name')?.getError('required')">
+        The Wine name is required
+    </div>
+    <div *ngIf="wineForm.get('name')?.invalid">
+        The name of the wine you typed is invalid
+    </div>

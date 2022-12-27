@@ -18,8 +18,8 @@ export class WineNewComponent {
   createForm() {
     this.wineForm = this.fb.group({             
       name: [null, [Validators.required, new CustomWineValidator()]],
-      price: [0, [Validators.required, Validators.min(1)]],
-      imageUrl: ['', [Validators.required, Validators.pattern('^http(s?)\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(/\S*)?$')]],
+      price: [0, [Validators.required, Validators.min(1), Validators.pattern('^[0-9]*$')]],
+      imageUrl: ['', [Validators.required, Validators.pattern('^http(s?):\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?$')]],
       isOnSale: [null, null]
     });
   }
